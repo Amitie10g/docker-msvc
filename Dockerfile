@@ -1,12 +1,7 @@
 # escape=`
 
-# I wanted to use nanoserver but I couldn't get visual c++ build
-# tools to install. the nuget visual c++ build tools package isn't
-# enough to get a working compiler and manually copying msvc
-# defeats the purpose of using the container to automatically
-# install deps.
-# unfortunately windowsservercore is a 4GB image
-FROM microsoft/windowsservercore
+# Using Windows 10 Insider instead of Server Core, to get gui.
+FROM windows/insider
 
 RUN @"%SystemRoot%\System32\WindowsPowerShell\v1.0\powershell.exe" -NoProfile -InputFormat None -ExecutionPolicy Bypass -Command "iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))" && SET "PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin"
 
